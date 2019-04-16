@@ -43,19 +43,76 @@ class Tablero {
 
         let color = true
 
-        for (let i = 0; i < this.columnas; i++) {
-            color = !color
-            for (let j = 0; j < this.filas; j++) {
+        let contador = this.totalCasillas
+
+        let reversa = true
+
+        for (let y = 0; y < this.filas; y++) {
+            if (this.columnas % 2 == 0) {
+                color = !color
+            }
+
+            reversa = !reversa
+
+            if (y % 2 == 0 && y != 0) {
+                contador--
+                contador -= this.columnas
+                console.log("par")
+            }
+
+            if (reversa) {
+                contador -= this.columnas
+                contador++
+            }
+
+            console.log(this.columnas)
+            console.log('-------------------')
+
+            for (let x = 0; x < this.columnas; x++) {
                 if (color) {
-                    context.fillStyle = "rgb(255, 255, 255)"
+                    context.fillStyle = "rgb(240,156,103)"
                     color = !color
                 }
                 else {
-                    context.fillStyle = "rgb(150, 150, 150)"
+                    context.fillStyle = "rgb(92,160,211)"
                     color = !color
                 }
 
-                context.fillRect(i * ancho, j * alto, ancho, alto)
+                if (contador == 1) {
+                    context.fillStyle = "rgb(0,189,86)"
+                }
+                if (contador == this.totalCasillas) {
+                    context.fillStyle = "rgb(145,53,53)"
+                }
+
+                //context.fillRect(x,y,w,h)
+                context.fillRect(x * ancho, y * alto, ancho, alto)
+
+                context.font = "30px Arial black"
+                context.fillStyle = "rgb(233,238,201)"
+                context.textAlign = "center"
+
+                //context.fillText(text, x, y)
+                context.fillText(`${contador}`, (x * ancho) + (ancho / 2), (y * alto) + (alto / 2))
+
+                if ((contador) % this.columnas == 0) {
+                    let flecha = ""
+                    if (reversa) {
+                        flecha = "←"
+                    }
+                    else {
+                        flecha = "→"
+                    }
+                    context.font = "24px Arial black"
+                    context.fillText(flecha, x * ancho + ancho / 2, y * alto)
+                }
+
+                if (reversa) {
+                    contador++
+                }
+                else {
+                    contador--
+                }
             }
         }
     }

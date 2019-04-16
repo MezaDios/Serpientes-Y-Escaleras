@@ -32,12 +32,12 @@ class Juego {
         this.finalizado = false
         this.ganador = null
 
-        this.tablero.getCasilla(23).Serpiente = new Serpiente(23, 10)
-        this.tablero.getCasilla(99).Serpiente = new Serpiente(99, 2)
-        this.tablero.getCasilla(54).Serpiente = new Serpiente(54, 49)
-        this.tablero.getCasilla(15).Escalera = new Escalera(15, 30)
-        this.tablero.getCasilla(43).Escalera = new Escalera(43, 74)
-        this.tablero.getCasilla(58).Escalera = new Escalera(58, 66)
+        //this.tablero.getCasilla(23).Serpiente = new Serpiente(23, 10)
+        //this.tablero.getCasilla(99).Serpiente = new Serpiente(99, 2)
+        //this.tablero.getCasilla(54).Serpiente = new Serpiente(54, 49)
+        //this.tablero.getCasilla(15).Escalera = new Escalera(15, 30)
+        //this.tablero.getCasilla(43).Escalera = new Escalera(43, 74)
+        //this.tablero.getCasilla(58).Escalera = new Escalera(58, 66)
 
         do {
 
@@ -50,6 +50,7 @@ class Juego {
                     this.ganador = this.jugadores[i]
                     console.log('Juego terminado')
                     console.log(`Ganador ${this.ganador.nombre}`)
+                    i = this.tablero.TotalCasillas
                 }
             }
 
@@ -94,7 +95,7 @@ class Juego {
 
         console.log('----------------------')
 
-        if (repetir) {
+        if (repetir && jugador.PosicionActual < this.tablero.TotalCasillas) {
             this.turno(jugador)
         }
     }
