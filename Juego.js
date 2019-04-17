@@ -28,6 +28,23 @@ class Juego {
         return this.ganador
     }
 
+    get Jugadores() {
+        return this.jugadores
+    }
+
+    set Jugadores(jugadores) {
+        this.jugadores = jugadores
+    }
+
+    elegirOrden() {
+        let orden = []
+        let tiradas = []
+        for (let i = 0; i < this.Jugadores.length; i++) {
+            let numero = this.dado.lanzar()
+
+        }
+    }
+
     empezar() {
         this.finalizado = false
         this.ganador = null
@@ -40,7 +57,6 @@ class Juego {
         //this.tablero.getCasilla(58).Escalera = new Escalera(58, 66)
 
         do {
-
             for (let i = 0; i < this.jugadores.length; i++) {
 
                 this.turno(this.jugadores[i])
@@ -52,12 +68,27 @@ class Juego {
                     console.log(`Ganador ${this.ganador.nombre}`)
                     i = this.tablero.TotalCasillas
                 }
+
             }
 
         } while (!this.finalizado)
     }
 
+    imprimirPosicion(posicion, context, canvas) {
+        //arc(x, y, radio, startAngle, endAngle, antihorario);
+        context.beginPath()
+        context.strokeStyle = "rgba(0,0,0)"
+        let casilla = this.tablero.posicionCasilla(posicion, canvas)
+        context.arc(casilla.x, casilla.y, 2.5, 0, Math.PI * 2, false)
+        context.stroke()
+        context.closePath()
+    }
+
     turno(jugador) {
+
+        let canvas = document.getElementById('tablero')
+        let context = canvas.getContext('2d')
+
         let repetir = false
 
         console.log(`Turno del ${jugador.Nombre}`)
@@ -80,17 +111,21 @@ class Juego {
 
         console.log(`El ${jugador.Nombre} está en la posición ${posicion}`)
 
+        this.imprimirPosicion(posicion, context, canvas)
 
-        console.log(posicion)
         if (this.tablero.getCasilla(posicion).Serpiente != null) {
             console.log(`Habia una serpiente.`)
-            console.log(`Fuiste recorrido a la posicion ${this.tablero.getCasilla(posicion).Serpiente.Final}`)
-            jugador.PosicionActual = (this.tablero.getCasilla(posicion).Serpiente.Final)
+            posicion = this.tablero.getCasilla(posicion).Serpiente.Final
+            console.log(`Fuiste recorrido a la posicion ${posicion}`)
+            jugador.PosicionActual = posicion
+            this.imprimirPosicion(posicion, context, canvas)
         }
         else if (this.tablero.getCasilla(posicion).Escalera != null) {
             console.log(`Habia una escalera.`)
-            console.log(`Fuiste recorrido a la posicion ${this.tablero.getCasilla(posicion).Escalera.Final}`)
-            jugador.PosicionActual = (this.tablero.getCasilla(posicion).Escalera.Final)
+            posicion = this.tablero.getCasilla(posicion).Escalera.Final
+            console.log(`Fuiste recorrido a la posicion ${posicion}`)
+            jugador.PosicionActual = posicion
+            this.imprimirPosicion(posicion, context, canvas)
         }
 
         console.log('----------------------')

@@ -10,6 +10,10 @@ class Serpiente {
         }
     }
 
+    get Inicio() {
+        return this.inicio
+    }
+
     get Final() {
         return this.final
     }

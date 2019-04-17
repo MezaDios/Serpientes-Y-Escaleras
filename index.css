@@ -1,0 +1,19 @@
+body {
+    font-size: 2vw;
+}
+
+h1 {
+    font-size: 4vw;
+}
+
+#rojo {
+    background: rgba(145,53,53,0.5);
+    width: 50%;
+    height: 1vh;
+}
+
+#verde {
+    background: rgba(0,189,86,0.5);
+    width: 50%;
+    height: 1vh;
+}
