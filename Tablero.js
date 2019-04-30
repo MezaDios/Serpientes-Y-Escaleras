@@ -216,7 +216,7 @@ class Tablero {
                 context.fillRect(x * ancho, y * alto, ancho, alto)
                 context.closePath()
                 context.beginPath()
-                context.font = "2vw Arial black"
+                context.font = "1vw Arial black"
                 context.fillStyle = "white"
                 context.textAlign = "center"
 
@@ -232,7 +232,7 @@ class Tablero {
                     else {
                         flecha = "→"
                     }
-                    context.font = "2vw Arial black"
+                    context.font = "1vw Arial black"
                     if (contador == 1) {
                         if (reversa) {
                             context.fillText("→", x * ancho + ancho / 2, y * alto + alto)

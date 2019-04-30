@@ -111,21 +111,21 @@ class Juego {
 
         console.log(`El ${jugador.Nombre} está en la posición ${posicion}`)
 
-        this.imprimirPosicion(posicion, context, canvas)
+        //this.imprimirPosicion(posicion, context, canvas)
 
         if (this.tablero.getCasilla(posicion).Serpiente != null) {
             console.log(`Habia una serpiente.`)
             posicion = this.tablero.getCasilla(posicion).Serpiente.Final
             console.log(`Fuiste recorrido a la posicion ${posicion}`)
             jugador.PosicionActual = posicion
-            this.imprimirPosicion(posicion, context, canvas)
+            //this.imprimirPosicion(posicion, context, canvas)
         }
         else if (this.tablero.getCasilla(posicion).Escalera != null) {
             console.log(`Habia una escalera.`)
             posicion = this.tablero.getCasilla(posicion).Escalera.Final
             console.log(`Fuiste recorrido a la posicion ${posicion}`)
             jugador.PosicionActual = posicion
-            this.imprimirPosicion(posicion, context, canvas)
+            //this.imprimirPosicion(posicion, context, canvas)
         }
 
         console.log('----------------------')
